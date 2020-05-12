@@ -2,7 +2,7 @@ clc; clear all; close all;
 %% Generate independent sourses
 rng(8);
 num = 2;
-s = 1.7*(2*rand(2,1000) - 1);
+s = rand(2,1000);
 %% Mix sourses and generate observations
 p = 0.5; % 0<p<1
 A = p*ones(num) + (1-p)*eye(num);
@@ -17,7 +17,7 @@ y = B*x;
 % SNR_2 = 10 * log10 (mean(s(2,:).^2) /  mean( (s(2,:)-y(2,:)).^2 ) );
 S = normalize(s ,2,'range');
 y = normalize(y ,2,'range');
-SNR_MIM= 10 * log10 (mean(S.^2,2) ./  mean((S-y).^2 , 2));
+SNR_MIM= 10 * log10 (mean(S.^2,2) ./  mean((S-y).^2 , 2));  % Equivalent
 %% Alg 2: Calculate B from observation via SD  
 clc; disp('Calculating B from observation via SD.');
 B = SD(x,0.1);

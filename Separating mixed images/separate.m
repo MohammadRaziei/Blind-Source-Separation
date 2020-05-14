@@ -36,6 +36,7 @@ function [y1,y2]= separate(x1,x2,plotFlag)
         subplot(142); plot(index,B_save(2,:)); title('B(1,2)'); ylim([-2,2])
         subplot(143); plot(index,B_save(3,:)); title('B(2,1)'); ylim([-2,2])
         subplot(144); plot(index,B_save(4,:)); title('B(2,2)'); ylim([-2,2])
+		save_figure(gcf, 'results/separate_B.png');
     end
     Y = normalize(-B*X,2,'range');
     y1 = uint8(reshape(Y(1,:), nx,ny) *255);

@@ -1,1 +1,1 @@
-# Blind-Source-Seperation
+# Blind-Source-Separation

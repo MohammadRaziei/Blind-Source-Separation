@@ -8,6 +8,13 @@ b = A*s;
 %% Solve it
 s_estim = BP(A,b);
 snr = 20*log10(norm(s)/norm(s_estim - s))
+%%
+figure_position([0.2,0.2,0.5,0.5]); hold on;
+stem(s); stem(s_estim,'--')
+title(['snr = ' num2str(snr)])
+% xlabel('sigma'); ylabel('SNR(db)');
+legend('s','s_estim')
+save_figure(gcf,'results-stem.png')
 %% add noise to b
 Sigma = linspace(0,1,1000); snr = zeros(size(Sigma));
 for i = 1:length(Sigma)
@@ -29,7 +36,7 @@ snr(i) = 20*log10(norm(s)/norm(s_estim - s));
 snr_n(i) = 20*log10(norm(s_n)/norm(s_estim - s_n));
 end
 %%
-figure_position([0.2,0.2,0.5,0.5]); hold on;
+figure_position([0.2,0.2,0.5,0.5]);
 plot(Sigma,snr,Sigma,snr_n);
 xlabel('sigma'); ylabel('SNR(db)');
 legend('calc snr with s','calc snr with noisy-s')
